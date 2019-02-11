@@ -15,7 +15,7 @@ z += b
 ```python
 z = np.dot(w, x) + b
 ```
-This `numpy` function take the advantage of SIMD(Single Instruction Mutiple Data) in CPU and GPU
+This `numpy` built-in function take the advantage of SIMD(Single Instruction Mutiple Data) in CPU and GPU
 
 :::
 
