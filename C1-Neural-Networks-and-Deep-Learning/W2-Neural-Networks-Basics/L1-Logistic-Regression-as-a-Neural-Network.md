@@ -7,8 +7,7 @@ In a binary classification problem, the result is a discrete value output.
 Logistic regression is a learning algorithm used in a supervised learning problem when the output $y$ are all either zero or one. The goal of logistic regression is to minimize the error between its predictions and training data.
 
 ### Cat vs No-cat
-Given an image represented by a feature vector 𝑥, the algorithm will evaluate the probability of a catbeing in that image.
-
+Given an image represented by a feature vector 𝑥, the algorithm will evaluate the probability of a cat being in that image.
 $$
 \text { Given } x , \hat { y } = P ( y = 1 | x ) , \text { where } 0 \leq \hat { y } \leq 1
 $$
@@ -43,10 +42,57 @@ $L \left( \hat { y } ^ { ( i ) } , y ^ { ( i ) } \right) = \frac { 1 } { 2 } \le
   - We do not use this because of multiple minimums.
 
 $L \left( \hat { y } ^ { ( i ) } , y ^ { ( i ) } \right) = - \left( y ^ { ( i ) } \log \left( \hat { y } ^ { ( i ) } \right) + \left( 1 - y ^ { ( i ) } \right) \log \left( 1 - \hat { y } ^ { ( i ) } \right) \right)$
-  - If $y ^ { ( i ) } = 1 : L \left( \hat { y } ^ { ( i ) } , y ^ { ( i ) } \right) = - \log \left( \hat { y } ^ { ( i ) } \right)$
+  - If $y ^ { ( i ) } = 1$ : $L \left( \hat { y } ^ { ( i ) } , y ^ { ( i ) } \right) = - \log \left( \hat { y } ^ { ( i ) } \right)$ want be close to $0$, where $\log \left( \hat { y } ^ { ( i ) } \right)$ and $\hat { y } ^ { ( i ) }$ should be close to $1$
+  - If $y ^ { ( i ) } = 0 : L \left( \hat { y } ^ { ( i ) } , y ^ { ( i ) } \right) = - \log \left( 1 - \hat { y } ^ { ( i ) } \right)$ want be close to $0$, where $\log \left( 1 - \hat { y } ^ { ( i ) } \right)$ and $\hat { y } ^ { ( i ) }$ should be close to $0$
+
+> Rafidah's effect:
+> if $y=1$ we try to make $\hat{y}$ large and if $y=0$ we try to make $\hat{y}$ small.
+
+::: tip
+
+Interpret $\hat { y } = P ( y = 1 | x )$ and we get the function which matches the meaning:
+
+$P ( y | x ) = \hat { y } ^ { y } ( 1 - \hat { y } ) ^ { ( 1 - y ) }$
+  - $P ( y = 1 | x ) = \hat { y }$
+  - $P ( y = 0 | x ) = 1 - \hat { y }$
+
+$$
+\begin{aligned}
+\log \left[ P ( y | x ) \right] & = \log \left[ \hat { y } ^ { y } ( 1 - \hat { y } ) ^ { ( 1 - y ) } \right]\\
+& = y \log ( \hat { y } ) + ( 1 - y ) \log ( 1 - \hat { y } )\\
+& = - L \left( \hat { y } , y \right)
+\end{aligned}
+$$
+
+> minimizing the loss corresponds to maximizing the log of the probability.
+:::
 
 ### Cost function
 The cost function is the average of the loss function of the entire training set. We are going to find the parameters $w$ and $b$ that minimize the overall cost function.
+
+$$
+J ( w , b ) = \frac { 1 } { m } \sum _ { i = 1 } ^ { m } L \left( \hat { y } ^ { ( i ) } , y ^ { ( i ) } \right) = - \frac { 1 } { m } \sum _ { i = 1 } ^ { m } \left[ y ^ { ( i ) } \log \left( \hat { y } ^ { ( i ) } \right) + \left( 1 - y ^ { ( i ) } \right) \log \left( 1 - \hat { y } ^ { ( i ) } \right) \right]
+$$
+
+::: tip
+
+$$
+\begin{aligned}
+\log{[P(\text{labels in training set})]} & \xlongequal{\text{IID}} \log{\left[\prod _ { i = 1 } ^ { m } P \left( y ^ { ( i ) } | x ^ { ( i ) } \right)\right]}\\
+& = \sum _ { i = 1 } ^ { m } \log \left[ P \left(y ^ { ( i ) } | x ^ { ( i ) } \right) \right]\\
+& = - \sum _ { i = 1 } ^ { m } L \left( \hat { y } ^ { ( i ) } , y ^ { ( l ) } \right)
+\end{aligned}
+$$
+
+> IID: Independent and Identically Distributed
+
+Use `maximnm likelihood estimation` to minimize the cost function.
+
+$$
+\text{Cost: } J(w,b) = \frac { 1 } { m } \sum _ { i = 1 } ^ { m } L \left( \hat { y } ^ { ( i ) } , y ^ { ( i ) } \right)
+$$
+
+:::
 
 ## Gradient Descent
 Want to find $w$, $b$ that minimize $J(w,b)$
