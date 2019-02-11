@@ -103,7 +103,7 @@ $$
 ## Gradient Descent
 Want to find $w$, $b$ that minimize $J(w,b)$
 
-```python
+```Pseudocode
 Repeat{
 	w := w - alpha * dw
 	b := b - alpha * db
@@ -111,8 +111,11 @@ Repeat{
 ```
 
 ::: tip
+
 $dw = \dfrac { \partial J ( w , b ) } { \partial w }$
+
 $db = \dfrac { \partial J ( w , b ) } { \partial b }$
+
 :::
 
 ## Computation graph
