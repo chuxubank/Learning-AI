@@ -48,7 +48,7 @@ module.exports = {
 					children: [
 						'W2-Neural-Networks-Basics/',
 						'W2-Neural-Networks-Basics/L1-Logistic-Regression-as-a-Neural-Network',
-						'W2-Neural-Networks-Basics/L2-Python-and-Vectorization/'
+						'W2-Neural-Networks-Basics/L2-Python-and-Vectorization'
 					]
 				},
 				'Practice-Questions',
