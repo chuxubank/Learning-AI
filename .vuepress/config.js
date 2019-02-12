@@ -45,6 +45,7 @@ module.exports = {
 				},
 				{
 					title: 'Week 2 | Neural Networks Basics',
+					sidebarDepth: 2,
 					children: [
 						'W2-Neural-Networks-Basics/',
 						'W2-Neural-Networks-Basics/L1-Logistic-Regression-as-a-Neural-Network',

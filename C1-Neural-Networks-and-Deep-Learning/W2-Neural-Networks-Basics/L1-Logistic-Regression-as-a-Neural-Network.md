@@ -69,7 +69,7 @@ $$
 \end{aligned}
 $$
 
-> minimizing the loss corresponds to maximizing the log of the probability.
+- minimizing the loss corresponds to maximizing the log of the probability.
 
 :::
 
@@ -103,7 +103,8 @@ $$
 ## Gradient Descent
 Want to find $w$, $b$ that minimize $J(w,b)$
 
-```Pseudocode
+```python
+# Pseudocode
 Repeat{
 	w := w - alpha * dw
 	b := b - alpha * db
@@ -115,6 +116,8 @@ Repeat{
 $dw = \dfrac { \partial J ( w , b ) } { \partial w }$
 
 $db = \dfrac { \partial J ( w , b ) } { \partial b }$
+
+alpha: the learning rate
 
 :::
 
@@ -157,3 +160,21 @@ $J ( w , b ) = \dfrac { 1 } { m } \displaystyle\sum _ { i = 1 } ^ { m } \mathcal
 $a ^ { ( i ) } = \hat { y } ^ { ( i ) } = \sigma \left( z ^ { ( i ) } \right) = \sigma \left( w ^ { T } x ^ { ( i ) } + b \right)$
 
 $\dfrac { \partial } { \partial w _ { 1 } } J ( w , b ) = \dfrac { 1 } { m } \displaystyle\sum _ { i = 1 } ^ { m } \dfrac { \partial } { \partial w _ { 1 } } \mathcal{L} \left( a ^ { ( i ) } , y ^ { ( i ) } \right) = \dfrac { 1 } { m } \displaystyle\sum _ { i = 1 } ^ { m } \mathrm{d} w_1^{(i)}$
+
+```python
+# Pseudocode
+J = 0, dw1 = 0, dw2 = 0, db = 0
+for i = 1 to m:
+	z[i] = w_T * x[i] + b
+	a[i] = sigma(z[i])
+	J += -(y[i] * log(y_hat[i]) + (1 - y_i) * log(1 - y_hat[i]))
+	dz[i] = a[i] * (1 - a[i])
+	dw_1 += x_1[i] * dz[i]
+	dw_2 += x_2[i] * dz[i]
+	db += dz[i]
+J /= m, dw_1 /= m, dw_2 /= m, db /= m
+
+w_1 = w1 - alpha * dw_1
+w_1 = w1 - alpha * dw_1
+b = b - alpha * db
+```

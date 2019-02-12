@@ -76,7 +76,45 @@ u = np.exp(v)
 np.log(v)
 np.abs(v)
 np.maximum(v, 0)
-v**2 # takes the element-wise square of each element of v.
-1/v # takes the element-wise inverse
+v**2	# takes the element-wise square of each element of v.
+1/v 	# takes the element-wise inverse
 ```
+### Logistic regression derivatives
+::: warning Non-vectorized
+```python
+# Pseudocode
+J = 0, dw1 = 0, dw2 = 0, db = 0
+for i = 1 to m:
+	z[i] = w_T * x[i] + b
+	a[i] = sigma(z[i])
+	J += -(y[i] * log(y_hat[i]) + (1 - y_i) * log(1 - y_hat[i]))
+	dz[i] = a[i] * (1 - a[i])
+	dw_1 += x_1[i] * dz[i]
+	dw_2 += x_2[i] * dz[i]
+	db += dz[i]
+J /= m, dw_1 /= m, dw_2 /= m, db /= m
 
+w_1 = w1 - alpha * dw_1
+w_1 = w1 - alpha * dw_1
+b = b - alpha * db
+```
+:::
+
+::: tip Vectorized
+```python {2,8,10}
+# Pseudocode
+J = 0, dw = np.zeros(n_x, 1), db = 0
+for i = 1 to m:
+	z[i] = w_T * x[i] + b
+	a[i] = sigma(z[i])
+	J += -(y[i] * log(y_hat[i]) + (1 - y_i) * log(1 - y_hat[i]))
+	dz[i] = a[i] * (1 - a[i])
+	dw += x[i] * dz[i]
+	db += dz[i]
+J /= m, dw /= m, db /= m
+
+w_1 = w1 - alpha * dw_1
+w_1 = w1 - alpha * dw_1
+b = b - alpha * db
+```
+:::
